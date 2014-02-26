@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>James Cipar</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript" 
+        src="http://code.jquery.com/jquery-1.7.2.min.js" ></script> 
+</head>
+<body>
+
+<div id="content">
+
+<div id="navigation-bar">
+<!--   <a href="#research">Research</a><br> -->
+  <!-- <a href="#publications" class="sublink">Papers</a><br>
+  <a href="#talks" class="sublink">Talks</a><br><br> -->
+  <a href="#publications">Papers</a><br>
+  <a href="#talks">Talks</a><br><br>
+</div>
+
+<div id="content-centered">
+
+<div class="section-title" id="top-title">
+<b>James Cipar</b>
+<div class="top-links">
+
+<a href="http://www.google.com/recaptcha/mailhide/d?k=01j1vwqo1jQmFZoqxqshnlkQ==&c=ijESOe1fnsF-RfUb0F3RUg=="
+   onclick="window.open('http://www.google.com/recaptcha/mailhide/d?k=01j1vwqo1jQmFZoqxqshnlkQ==&c=ijESOe1fnsF-RfUb0F3RUg==',
+   '','toolbar=0,scrollbars=0,location=0,statusbar=0,menubar=0,resizable=0,width=500,height=300');
+   return false;" 
+   title="Reveal this e-mail address">[email]</a>
+
+<!-- <a href="resume-jcipar-web.pdf">[resume]</a> -->
+</div> <!-- top-links -->
+</div> <!-- section-title -->
+
+<!-- 
+<div id="research" class="section">
+<h1>Research</h1> -->
+
+
+
+<div id="publications">
+<h2>Papers</h2>
+
+<div class="bib-entry">
+  <div class="bib-title">
+    More effective distributed ML via a stale synchronous parallel
+    parameter server
+  </div>
+  <div class="bib-venue">
+    NIPS 2013
+  </div>
+  <div class="bib-authors">
+    Qirong Ho, James Cipar, Henggang Cui, Jin Kyu Kim, Seunghak Lee, 
+    Phillip B. Gibbons, Garth A. Gibson, Gregory R. Ganger, Eric P. Xing
+  </div>
+  <div class="bib-notes">
+  </div>
+  <div class="bib-resources">
+    <a href="Papers/lazytables-nips2013.pdf">
+      [PDF]
+    </a>
+    <a onClick="$('#lazytables-nips-bibtex').toggle();">
+      [BibTex]
+    </a>
+  </div>
+  <div class="bib-bibtex" id="lazytables-nips-bibtex">
+    <pre>
+@inproceedings{lazytables-nips2013,
+author = {Qirong Ho and James Cipar and Henggang Cui and Jin Kyu Kim and Seunghak Lee and 
+    Phillip B. Gibbons and Garth A. Gibson and Gregory R. Ganger and Eric P. Xing},
+title = {More effective distributed ML via a stale synchronous
+parallel parameter server},
+booktitle = {Advances in Neural Information Processing Systems 25},
+series = {NIPS '13},
+year = {2013},
+}
+    </pre>
+  </div>
+  </div>
+
+
+<div class="bib-entry">
+  <div class="bib-title">
+    Solving the straggler problem with bounded staleness
+  </div>
+  <div class="bib-venue">
+    HotOS 2013
+  </div>
+  <div class="bib-authors">
+    James Cipar, Qirong Ho, Jin Kyu Kim, Seunghak Lee, Gregory
+    R. Ganger, Garth Gibson, Kimberly Keeton, Eric Xing
+  </div>
+  <div class="bib-notes">
+    Presented at conference
+  </div>
+  <div class="bib-resources">
+    <a href="Papers/lazytables-hotos2013.pdf">
+      [PDF]
+    </a>
+    <a onClick="$('#lazytables-straggler-bibtex').toggle();">
+      [BibTex]
+    </a>
+  </div>
+  <div class="bib-bibtex" id="lazytables-straggler-bibtex">
+    <pre>
+@inproceedings{lazytables-hotos2013,
+author = {James Cipar and Qirong Ho and Jin Kyu Kim and Seunghak Lee
+and Gregory R. Ganger and Garth Gibson and Kimberly Keeton and Eric Xing},
+title = {Solving the straggler problem with bounded staleness},
+booktitle = {Proc. of the 14th Usenix Workshop on Hot Topics in
+Operating Systems},
+series = {HotOS '13},
+year = {2013},
+location = {Santa Ana Pueblo, NM},
+Publisher = {Usenix},
+}
+    </pre>
+  </div>
+  </div>
+
+
+<div class="bib-entry">
+  <div class="bib-title">
+    AlSched: Algebraic scheduling of mixed workloads <br> in heterogeneous
+    clouds
+  </div>
+  <div class="bib-venue">
+    SoCC 2012
+  </div>
+  <div class="bib-authors">
+    Alexey Tumanov, James Cipar, Michael A. Kozuch, Gregory R. Ganger
+  </div>
+  <div class="bib-notes">
+  </div>
+  <div class="bib-resources">
+    <a href="Papers/alsched-socc2012.pdf">
+      [PDF]
+    </a>
+    <a onClick="$('#alsched-bibtex').toggle();">
+      [BibTex]
+    </a>
+    </div>
+  <div class="bib-bibtex" id="alsched-bibtex">
+<pre>
+@inproceedings{alsched-socc12,
+author = {Alexey Tumanov and James Cipar and Michael A. Kozuch and Gregory R. Ganger},
+title = {{a}lsched: algebraic scheduling of mixed workloads in heterogeneous clouds},
+booktitle = {Proc. of the 3nd ACM Symposium on Cloud Computing},
+series = {SOCC '12},
+year = {2012},
+location = {San Jose, CA},
+Publisher = {ACM},
+}
+</pre>
+  </div>
+</div> <!-- bib-entry -->
+
+<div class="bib-entry">
+  <div class="bib-title">
+      LazyBase: Trading Freshness for Performance in a Scalable Database
+  </div>
+  <div class="bib-venue">
+    EuroSys 2012
+  </div>
+  <div class="bib-authors">
+    James Cipar, Gregory R. Ganger, Kimberly Keeton, Charles B. Morrey
+    III, Craig A.N. Soules, Alistair Veitch
+  </div>
+  <div class="bib-notes">
+    Presented at conference
+  </div>
+  <div class="bib-resources">
+    <a href="Papers/lazybase-eurosys2012.pdf">
+      [PDF]
+    </a>
+    <a onClick="$('#lazybase-bibtex').toggle();">
+      [BibTex]
+    </a>
+  </div>
+  <div class="bib-bibtex" id="lazybase-bibtex">
+<pre>
+@inproceedings{Cipar:2012:LTF:2168836.2168854,
+ author = {Cipar, James and Ganger, Greg and Keeton, Kimberly and
+ Morrey,III, Charles B. and Soules, Craig A.N. and Veitch, Alistair},
+ title = {{L}azy{B}ase: trading freshness for performance in a scalable database},
+ booktitle = {Proceedings of the 7th ACM european conference on Computer Systems},
+ series = {EuroSys '12},
+ year = {2012},
+ isbn = {978-1-4503-1223-3},
+ location = {Bern, Switzerland},
+ pages = {169--182},
+ numpages = {14},
+ url = {http://doi.acm.org/10.1145/2168836.2168854},
+ doi = {10.1145/2168836.2168854},
+ acmid = {2168854},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {consistency, freshness, pipeline},
+} 
+</pre>
+  </div>
+  <div class="bib-description">
+    LazyBase is a distributed database designed for high-throughput
+    updates and inserts, while allowing low latency queries. It does
+    this by exploiting a tradeoff between query result freshness and
+    query latency.
+  </div>
+</div> <!-- bib-entry -->
+
+
+
+
+
+
+<div class="bib-entry">
+  <div class="bib-title">
+      Robust and Flexible Power-Proportional Storage
+  </div>
+  <div class="bib-venue">
+    SoCC 2010
+  </div>
+  <div class="bib-authors">
+    Hrishikesh Amur, James Cipar, Varun Gupta, Gregory R. Ganger, Michael
+    A. Kozuch, Karsten Schwan
+  </div>
+  <div class="bib-resources">
+    <a href="Papers/rabbit-socc2010.pdf">
+      [PDF]
+    </a>
+    <a onClick="$('#rabbit-bibtex').toggle();" >
+      [BibTex]
+    </a>
+  </div>
+  <div class="bib-bibtex" id="rabbit-bibtex">
+    <pre>
+@inproceedings{Amur:2010:RFP:1807128.1807164,
+ author = {Amur, Hrishikesh and Cipar, James and Gupta, Varun and
+ Ganger, Gregory R. and Kozuch, Michael A. and Schwan, Karsten},
+ title = {Robust and flexible power-proportional storage},
+ booktitle = {Proceedings of the 1st ACM symposium on Cloud computing},
+ series = {SoCC '10},
+ year = {2010},
+ isbn = {978-1-4503-0036-0},
+ location = {Indianapolis, Indiana, USA},
+ pages = {217--228},
+ numpages = {12},
+ url = {http://doi.acm.org/10.1145/1807128.1807164},
+ doi = {10.1145/1807128.1807164},
+ acmid = {1807164},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {cluster computing, data-layout, power-proportionality},
+} 
+    </pre>
+  </div>
+  <div class="bib-description">
+    Introduces a distributed file system (Rabbit) that can elastically
+    scale performance and power consumption to meet a wide range
+    performance targets with little to no loss of efficiency.
+  </div>
+</div> <!-- bib-entry -->
+
+
+
+
+
+
+<div class="bib-entry">
+  <div class="bib-title">
+      Tashi: Location-Aware Cluster Management
+  </div>
+  <div class="bib-venue">
+    ACDC 2009
+  </div>
+  <div class="bib-authors">
+    Michael A. Kozuch, Michael P. Ryan, Richard Gass, Steven
+    W. Schlosser, David O'Hallaron, James Cipar, Elie Krevat, Julio
+    L&oacute;pez, Michael Stroucken, and Gregory R. Ganger
+  </div>
+  <div class="bib-resources">
+    <a href="Papers/tashi-acdc09.pdf">
+      [PDF]
+    </a>
+    <a onClick="$('#tashi-bibtex').toggle();" >
+      [BibTex]
+    </a>
+  </div>
+  <div class="bib-bibtex" id="tashi-bibtex">
+    <pre>
+@inproceedings{Kozuch:2009:TLC:1555271.1555282,
+ author = {Kozuch, Michael A. and Ryan, Michael P. and Gass, Richard 
+ and Schlosser, Steven W. and O'Hallaron, David and Cipar, James 
+ and Krevat, Elie and L\'{o}pez, Julio and Stroucken, Michael and Ganger, Gregory R.},
+ title = {{T}ashi: location-aware cluster management},
+ booktitle = {Proceedings of the 1st workshop on Automated control for datacenters and clouds},
+ series = {ACDC '09},
+ year = {2009},
+ isbn = {978-1-60558-585-7},
+ location = {Barcelona, Spain},
+ pages = {43--48},
+ numpages = {6},
+ url = {http://doi.acm.org/10.1145/1555271.1555282},
+ doi = {10.1145/1555271.1555282},
+ acmid = {1555282},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ keywords = {cloud computing, cluster management, virtualization},
+} 
+    </pre>
+  </div>
+  <div class="bib-description">
+    Presents Tashi, a cluster management system designed for enabling
+    cloud computing applications to operate on repositories of Big
+    Data. A key technique is location-awareness: frameworks and
+    applications should be aware of the relative distances
+    (network-wise) between resources.
+  </div>
+</div> <!-- bib-entry -->
+
+
+
+
+
+<div class="bib-entry">
+  <div class="bib-title">
+      TFS: A Transparent File System for Contributory Storage
+  </div>
+  <div class="bib-venue">
+    FAST 2007
+  </div>
+  <div class="bib-authors">
+    James Cipar, Mark D. Corner, Emery D. Berger
+  </div>
+  <div class="bib-notes">
+    Presented at conference<br>
+    Best paper award
+  </div>
+  <div class="bib-resources">
+    <a href="Papers/tfs-fast07.pdf">
+      [PDF]
+    </a>
+    <a onClick="$('#tfs-bibtex').toggle();" >
+      [BibTex]
+    </a>
+  </div>
+  <div class="bib-bibtex" id="tfs-bibtex">
+    <pre>
+@inproceedings{Cipar:2007:TTF:1267903.1267931,
+ author = {Cipar, James and Corner, Mark D. and Berger, Emery D.},
+ title = {{TFS}: a transparent file system for contributory storage},
+ booktitle = {Proceedings of the 5th USENIX conference on File and Storage Technologies},
+ series = {FAST '07},
+ year = {2007},
+ location = {San Jose, CA},
+ pages = {28--28},
+ numpages = {1},
+ url = {http://dl.acm.org/citation.cfm?id=1267903.1267931},
+ acmid = {1267931},
+ publisher = {USENIX Association},
+ address = {Berkeley, CA, USA},
+} 
+    </pre>
+  </div>
+  <div class="bib-description">
+    A file system that allows background applications to use all
+    unused disk space, without impacting ordinary applications in
+    terms of available space or file system fragmentation.
+  </div>
+</div> <!-- bib-entry -->
+
+
+
+
+
+<div class="bib-entry">
+  <div class="bib-title">
+      Transparent Contribution of Memory
+  </div>
+  <div class="bib-venue">
+    Usenix ATC 2006
+  </div>
+  <div class="bib-authors">
+    James Cipar, Mark D. Corner, and Emery D. Berger
+  </div>
+  <div class="bib-notes">
+    Presented at conference
+  </div>
+  <div class="bib-resources">
+    <a href="Papers/tmm-usenix06.pdf">
+      [PDF]
+    </a>
+    <a onClick="$('#tmm-bibtex').toggle();" >
+      [BibTex]
+    </a>
+  </div>
+  <div class="bib-bibtex" id="tmm-bibtex">
+    <pre>
+@inproceedings{Cipar:2006:TCM:1267359.1267370,
+ author = {Cipar, James and Corner, Mark D. and Berger, Emery D.},
+ title = {Transparent contribution of memory},
+ booktitle = {Proceedings of the annual conference on USENIX '06 Annual Technical Conference},
+ series = {ATEC '06},
+ year = {2006},
+ location = {Boston, MA},
+ pages = {11--11},
+ numpages = {1},
+ url = {http://dl.acm.org/citation.cfm?id=1267359.1267370},
+ acmid = {1267370},
+ publisher = {USENIX Association},
+ address = {Berkeley, CA, USA},
+} 
+    </pre>
+  </div>
+  <div class="bib-description">
+    Prioritization of physical memory into foreground and background
+    tasks. Accurately and efficiently determines the memory needs of
+    foreground applications so they are not impacted by background
+    activity.
+  </div>
+</div> <!-- bib-entry -->
+
+</div> <!-- publications -->
+
+<div id="talks">
+<h2>Talks</h2>
+
+<div class="bib-entry">
+  <div class="bib-subtitle">
+    Solving the Straggler Problem with Bounded Staleness
+  </div>
+  <div class="bib-venue">
+    HotOS 2013
+  </div>
+  <div class="bib-resources">
+    <a href="presentations/lazytables-hotos2013.pptx">
+      [PPT]
+    </a>
+    <a href="presentations/lazytables-hotos2013.pdf">
+      [PDF]
+    </a>
+    <a onClick="$('#hotos-2013-talk-erratum').toggle()">
+      [Erratum]
+    </a>
+  </div>
+  <div class="bib-erratum" id="hotos-2013-talk-erratum">
+    The title of Slide 24 ("Total convergence time") is incorrect. The
+    results in the figure are the time to execute a fixed number of
+    iterations (50).
+  </div>
+</div>
+
+<div class="bib-entry">
+  <div class="bib-subtitle">
+    LazyBase: Trading Freshness for Performance in a Scalable Database
+  </div>
+  <div class="bib-venue">
+    EuroSys 2012
+  </div>
+  <div class="bib-resources">
+    <a href="presentations/lazybase-eurosys2012.ppt">
+      [PPT]
+    </a>
+    <a href="presentations/lazybase-eurosys2012.pdf">
+      [PDF]
+    </a>
+  </div>
+</div> <!-- bib-entry -->
+
+<div class="bib-entry">
+  <div class="bib-subtitle">
+    TFS: A Transparent File System for Contributory Storage
+  </div>
+  <div class="bib-venue">
+    FAST 2007
+  </div>
+  <div class="bib-resources">
+    <a href="presentations/tfs-fast07.ppt">
+      [PPT]
+    </a>
+    <a href="presentations/tfs-fast07.pdf">
+      [PDF]
+    </a>
+  </div>
+</div> <!-- bib-entry -->
+
+<div class="bib-entry">
+  <div class="bib-subtitle">
+    Transparent Contribution of Memory
+  </div>
+  <div class="bib-venue">
+    Usenix ATC 2006
+  </div>
+  <div class="bib-resources">
+    <a href="presentations/tmm-usenix06.ppt">
+      [PPT]
+    </a>
+    <a href="presentations/tmm-usenix06.pdf">
+      [PDF]
+    </a>
+  </div>
+</div> <!-- bib-entry -->
+</div> <!-- talks -->
+
+
+</div> <!-- research -->
+
+
+</div> <!-- content-centered -->
+</div> <!-- content -->
+</body>
+</html>
