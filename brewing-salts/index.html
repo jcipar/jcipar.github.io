@@ -1,0 +1,246 @@
+<html>
+
+<!-- The MIT License (MIT)
+
+Copyright (c) 2015 James Cipar
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE. -->
+
+<script type="text/javascript" src="numeric-1.2.6.js"></script>
+<script type="text/javascript" src="brewing-salts-numeric.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+function optimize()
+{
+	var input = example_input;
+	for (ion in input.target_profile) {
+		var input_name = "#input-" + ion;
+		input.target_profile[ion] = $(input_name).val();
+	}
+	for (ion in input.initial_profile) {
+		var input_name = "#starting-" + ion;
+		input.initial_profile[ion] = $(input_name).val();
+	}
+	input.
+	var result = optimize_salts(parameters, input);
+	//alert(JSON.stringify(result));
+	for (salt in result.salts_g_gal) {
+		var output_name = '#g-gal-' + salt;
+		$(output_name).html(result.salts_g_gal[salt]);
+	}
+	for (salt in result.salts_g) {
+		var output_name = '#g-' + salt;
+		$(output_name).html(result.salts_g[salt]);
+	}
+	for (salt in result.salts_tsp) {
+		var output_name = '#tsp-' + salt;
+		$(output_name).html(result.salts_tsp[salt]);
+	}
+
+	for (ion in input.target_profile) {
+		var output_name = "#target-" + ion;
+		$(output_name).html(input.target_profile[ion]);
+	}
+
+	for (ion in input.target_profile) {
+		var output_name = "#added-" + ion;
+		$(output_name).html(result.ions_added[ion]);
+	}
+
+	for (ion in input.target_profile) {
+		var output_name = "#total-" + ion;
+		$(output_name).html(result.ions[ion]);
+	}
+
+	for (ion in input.target_profile) {
+		var output_name = "#error-" + ion;
+		$(output_name).html(result.ion_errors[ion]);
+	}
+}
+</script>
+
+
+<body>
+<input type="number" id='water-gallons' value=5.0></body>
+
+<table>
+
+<tr>
+<th></th>
+<th>Calcium</th>
+<th>Magnesium</th>
+<th>Sodium</th>
+<th>Sulfate</th>
+<th>Chloride</th>
+<th>Bicarbonate</th>
+</tr>
+
+<tr>
+<td>Desired Water Profile</td>
+<td><input type="number" id='input-calcium' value=55.0 /></td>
+<td><input type="number" id='input-magnesium' value=10.0 /></td>
+<td><input type="number" id='input-sodium' value=10.0 /></td>
+<td><input type="number" id='input-sulfate' value=75.0 /></td>
+<td><input type="number" id='input-chloride' value=63.0 /></td>
+<td><input type="number" id='input-bicarbonate' value=40.0 /></td>
+</tr>
+
+<tr>
+<td>Starting Water Profile</td>
+<td><input type="number" id='starting-calcium' value=0.0 /></td>
+<td><input type="number" id='starting-magnesium' value=0.0 /></td>
+<td><input type="number" id='starting-sodium' value=0.0 /></td>
+<td><input type="number" id='starting-sulfate' value=0.0 /></td>
+<td><input type="number" id='starting-chloride' value=0.0 /></td>
+<td><input type="number" id='starting-bicarbonate' value=0.0 /></td>
+</tr>
+
+</table>
+
+<button onClick="optimize()">Find Salt Additions</button>
+
+
+<table>
+
+<tr>
+<th></th>
+<th>grams/gallon</th>
+<th>grams in 6 gallons</th>
+<th>tsp in 6 gallons</th>
+</tr>
+
+<tr>
+<th>Gypsum</th>
+<td id='g-gal-gypsum'></td>
+<td id='g-gypsum'></td>
+<td id='tsp-gypsum'></td>
+</tr>
+
+<tr>
+<th>Epsom</th>
+<td id='g-gal-epsom'></td>
+<td id='g-epsom'></td>
+<td id='tsp-epsom'></td>
+</tr>
+
+<tr>
+<th>Table Salt</th>
+<td id='g-gal-table'></td>
+<td id='g-table'></td>
+<td id='tsp-table'></td>
+</tr>
+
+<tr>
+<th>Calcium Chloride</th>
+<td id='g-gal-calcium_chloride'></td>
+<td id='g-calcium_chloride'></td>
+<td id='tsp-calcium_chloride'></td>
+</tr>
+
+<tr>
+<th>Magnesium Chloride</th>
+<td id='g-gal-magnesium_chloride'></td>
+<td id='g-magnesium_chloride'></td>
+<td id='tsp-magnesium_chloride'></td>
+</tr>
+
+<tr>
+<th>Baking Soda</th>
+<td id='g-gal-baking_soda'></td>
+<td id='g-baking_soda'></td>
+<td id='tsp-baking_soda'></td>
+</tr>
+
+<tr>
+<th>Pickling Lime</th>
+<td id='g-gal-pickling_lime'></td>
+<td id='g-pickling_lime'></td>
+<td id='tsp-pickling_lime'></td>
+</tr>
+
+<tr>
+
+</tr>
+
+</table>
+
+
+<table>
+<tr>
+	<th></th>
+	<th>Added</th>
+	<th>Total</th>
+	<th>Target</th>
+	<th>Error</th>
+</tr>
+
+<tr>
+<th>Calcium</th>
+<td id='added-calcium'></td>
+<td id='total-calcium'></td>
+<td id='target-calcium'></td>
+<td id='error-calcium'></td>
+</tr>
+
+<tr>
+<th>Magnesium</th>
+<td id='added-magnesium'></td>
+<td id='total-magnesium'></td>
+<td id='target-magnesium'></td>
+<td id='error-magnesium'></td>
+</tr>
+
+<tr>
+<th>Sodium</th>
+<td id='added-sodium'></td>
+<td id='total-sodium'></td>
+<td id='target-sodium'></td>
+<td id='error-sodium'></td>
+</tr>
+
+<tr>
+<th>Sulfate</th>
+<td id='added-sulfate'></td>
+<td id='total-sulfate'></td>
+<td id='target-sulfate'></td>
+<td id='error-sulfate'></td>
+</tr>
+
+<tr>
+<th>Chloride</th>
+<td id='added-chloride'></td>
+<td id='total-chloride'></td>
+<td id='target-chloride'></td>
+<td id='error-chloride'></td>
+</tr>
+
+<tr>
+<th>Bicarbonate</th>
+<td id='added-bicarbonate'></td>
+<td id='total-bicarbonate'></td>
+<td id='target-bicarbonate'></td>
+<td id='error-bicarbonate'></td>
+</tr>
+
+</table>
+
+
+</body>
+
+</html>
