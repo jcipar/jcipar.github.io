@@ -72,12 +72,14 @@ function optimize()
 		var output_name = "#error-" + ion;
 		$(output_name).html(result.ion_errors[ion]);
 	}
+	$("#g-gallons").html("grams in " + input.water_gallons + " gallons")
+	$("#tsp-gallons").html("tsp in " + input.water_gallons + " gallons")
 }
 </script>
 
 
 <body>
-<input type="number" id='water-gallons' value=5.0></body>
+<label>Gallons of water to treat</label><input type="number" id='water-gallons' value=5.0></body>
 
 <table>
 
@@ -121,8 +123,8 @@ function optimize()
 <tr>
 <th></th>
 <th>grams/gallon</th>
-<th>grams in 6 gallons</th>
-<th>tsp in 6 gallons</th>
+<th id='g-gallons'>grams in X gallons</th>
+<th id='tsp-gallons'>tsp in X gallons</th>
 </tr>
 
 <tr>
