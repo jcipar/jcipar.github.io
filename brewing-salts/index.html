@@ -37,7 +37,7 @@ function optimize()
 		var input_name = "#starting-" + ion;
 		input.initial_profile[ion] = $(input_name).val();
 	}
-	input.
+	input.water-gallons = $('#water-gallons').val();
 	var result = optimize_salts(parameters, input);
 	//alert(JSON.stringify(result));
 	for (salt in result.salts_g_gal) {
