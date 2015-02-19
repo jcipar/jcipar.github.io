@@ -25,66 +25,148 @@ SOFTWARE. -->
 <script type="text/javascript" src="numeric-1.2.6.js"></script>
 <script type="text/javascript" src="brewing-salts-numeric.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+
 <script type="text/javascript">
+"use strict";
+
+function round(value, exp) {
+  if (typeof exp === 'undefined' || +exp === 0)
+    return Math.round(value);
+
+  value = +value;
+  exp  = +exp;
+
+  if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0))
+    return NaN;
+
+  // Shift
+  value = value.toString().split('e');
+  value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp)));
+
+  // Shift back
+  value = value.toString().split('e');
+  return +(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp));
+}
+
 function optimize()
 {
 	var input = example_input;
-	for (ion in input.target_profile) {
+	for (var ion in input.target_profile) {
 		var input_name = "#input-" + ion;
-		input.target_profile[ion] = $(input_name).val();
+		input.target_profile[ion] = Number($(input_name).val());
 	}
-	for (ion in input.initial_profile) {
+	for (var ion in input.initial_profile) {
 		var input_name = "#starting-" + ion;
-		input.initial_profile[ion] = $(input_name).val();
+		input.initial_profile[ion] = Number($(input_name).val());
 	}
-	input.water_gallons = $('#water-gallons').val();
+	input.water_gallons = Number($('#water-gallons').val());
+
+	var maintain_ratios = $('#maintain-sulfate-chloride-ratio').is(':checked')	;
+	// preserve sulfate:chloride ratio, rather than hitting targets
+	if (maintain_ratios && (input.initial_profile.chloride > input.target_profile.chloride)) {
+		var b = input.initial_profile.chloride / input.target_profile.chloride;
+		input.target_profile.chloride = input.initial_profile.chloride;
+		input.target_profile.sulfate *= b;
+		alert("Increasing sulfate target to maintain chloride:sulfate ratio, due to high chloride.");
+	}
+	if (maintain_ratios && (input.initial_profile.sulfate > input.target_profile.sulfate)) {
+		var b = input.initial_profile.sulfate / input.target_profile.sulfate;
+		input.target_profile.sulfate = input.initial_profile.sulfate;
+		input.target_profile.chloride *= b;
+		alert("Increasing chloride target to maintain chloride:sulfate ratio, due to high sulfate.");
+
+	}
+
 	var result = optimize_salts(parameters, input);
 	//alert(JSON.stringify(result));
-	for (salt in result.salts_g_gal) {
+	for (var salt in result.salts_g_gal) {
 		var output_name = '#g-gal-' + salt;
-		$(output_name).html(result.salts_g_gal[salt]);
+		$(output_name).html(round(result.salts_g_gal[salt],2));
 	}
-	for (salt in result.salts_g) {
+	for (var salt in result.salts_g) {
 		var output_name = '#g-' + salt;
-		$(output_name).html(result.salts_g[salt]);
+		$(output_name).html(round(result.salts_g[salt],2));
 	}
-	for (salt in result.salts_tsp) {
+	for (var salt in result.salts_tsp) {
 		var output_name = '#tsp-' + salt;
-		$(output_name).html(result.salts_tsp[salt]);
+		$(output_name).html(round(result.salts_tsp[salt],2));
 	}
 
-	for (ion in input.target_profile) {
+	for (var ion in input.target_profile) {
 		var output_name = "#target-" + ion;
-		$(output_name).html(input.target_profile[ion]);
+		$(output_name).html(round(input.target_profile[ion],2));
 	}
 
-	for (ion in input.target_profile) {
+	for (var ion in input.target_profile) {
 		var output_name = "#added-" + ion;
-		$(output_name).html(result.ions_added[ion]);
+		$(output_name).html(round(result.ions_added[ion],2));
 	}
 
-	for (ion in input.target_profile) {
+	for (var ion in input.target_profile) {
 		var output_name = "#total-" + ion;
-		$(output_name).html(result.ions[ion]);
+		$(output_name).html(round(result.ions[ion],2));
 	}
 
-	for (ion in input.target_profile) {
+	for (var ion in input.target_profile) {
 		var output_name = "#error-" + ion;
-		$(output_name).html(result.ion_errors[ion]);
+		$(output_name).html(round(result.ion_errors[ion],2));
 	}
 	$("#g-gallons").html("grams in " + input.water_gallons + " gallons")
 	$("#tsp-gallons").html("tsp in " + input.water_gallons + " gallons")
 }
+
+
+function set_starting()
+{
+	var profile_name = $("#starting-profile-select").val();
+	var profile = standard_initial_profiles[profile_name];
+	for (var ion in profile) {
+		var input_name = "#starting-" + ion;
+		$(input_name).val(profile[ion]);
+	}
+}
+
+
+function set_desired()
+{
+	var profile_name = $("#desired-profile-select").val();
+	var profile = standard_target_profiles[profile_name];
+	for (var ion in profile) {
+		var input_name = "#input-" + ion;
+		$(input_name).val(profile[ion]);
+	}
+}
+
+
+$(document).ready(function() {
+	for (var profile_name in standard_initial_profiles) {
+		$('#starting-profile-select')
+          .append($('<option>', { value : profile_name })
+          .text(profile_name));
+	}
+	for (var profile_name in standard_target_profiles) {
+		$('#desired-profile-select')
+          .append($('<option>', { value : profile_name })
+          .text(profile_name));
+	}
+});
 </script>
 
 
 <body>
 <label>Gallons of water to treat</label><input type="number" id='water-gallons' value=5.0></body>
 
+
+
+
+
 <table>
 
 <tr>
 <th></th>
+<th>Standard profiles</th>
 <th>Calcium</th>
 <th>Magnesium</th>
 <th>Sodium</th>
@@ -95,6 +177,11 @@ function optimize()
 
 <tr>
 <td>Desired Water Profile</td>
+<td>
+<select id="desired-profile-select" onChange="set_desired()">
+<option></option>
+</select>
+</td>
 <td><input type="number" id='input-calcium' value=55.0 /></td>
 <td><input type="number" id='input-magnesium' value=10.0 /></td>
 <td><input type="number" id='input-sodium' value=10.0 /></td>
@@ -105,6 +192,11 @@ function optimize()
 
 <tr>
 <td>Starting Water Profile</td>
+<td>
+<select id="starting-profile-select" onChange="set_starting()">
+<option></option>
+</select>
+</td>
 <td><input type="number" id='starting-calcium' value=0.0 /></td>
 <td><input type="number" id='starting-magnesium' value=0.0 /></td>
 <td><input type="number" id='starting-sodium' value=0.0 /></td>
@@ -114,6 +206,9 @@ function optimize()
 </tr>
 
 </table>
+
+<label>Maintain Sulfate:Chloride ratio even if it goes over targets: </label>
+<input type="checkbox" id='maintain-sulfate-chloride-ratio' /><br>
 
 <button onClick="optimize()">Find Salt Additions</button>
 
