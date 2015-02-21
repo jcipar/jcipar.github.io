@@ -24,6 +24,8 @@ SOFTWARE. -->
 
 <script type="text/javascript" src="numeric-1.2.6.js"></script>
 <script type="text/javascript" src="brewing-salts-numeric.js"></script>
+<script type="text/javascript" src="water-profile-library.js"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
@@ -62,6 +64,13 @@ function optimize()
 		input.initial_profile[ion] = Number($(input_name).val());
 	}
 	input.water_gallons = Number($('#water-gallons').val());
+	for (var salt in parameters.salts) {
+		if ($('#use-'+salt).is(':checked')) {
+			input.max_salts[salt] = 1000.0;
+		} else {
+			delete input.max_salts[salt];
+		}
+	}
 
 	var maintain_ratios = $('#maintain-sulfate-chloride-ratio').is(':checked')	;
 	// preserve sulfate:chloride ratio, rather than hitting targets
@@ -80,7 +89,8 @@ function optimize()
 	}
 
 	var result = optimize_salts(parameters, input);
-	//alert(JSON.stringify(result));
+	clear_output_tables();
+	// alert(JSON.stringify(result));
 	for (var salt in result.salts_g_gal) {
 		var output_name = '#g-gal-' + salt;
 		$(output_name).html(round(result.salts_g_gal[salt],2));
@@ -118,6 +128,17 @@ function optimize()
 }
 
 
+function clear_output_tables()
+{
+	for (var salt in parameters.salts) {
+		$('#g-gal-'+salt).html('');
+		$('#g-'+salt).html('');
+		$('#tsp-'+salt).html('');
+	}
+// TODO: clear ion table
+}
+
+
 function set_starting()
 {
 	var profile_name = $("#starting-profile-select").val();
@@ -140,6 +161,20 @@ function set_desired()
 }
 
 
+function setup_salt_table()
+{
+	for (var salt in parameters.salts) {
+		$('#salt-table').append("<tr>"
+			+ "<th>"+salt+"</th>"
+			+ "<td><input type='checkbox' id='use-"+salt+"' checked /></td>"
+			+ "<td id='g-gal-"+salt+"'></td>"
+			+ "<td id='g-"+salt+"'></td>"
+			+ "<td id='tsp-"+salt+"'></td>"
+			+ "</tr>");
+	}
+};
+
+
 $(document).ready(function() {
 	for (var profile_name in standard_initial_profiles) {
 		$('#starting-profile-select')
@@ -151,6 +186,7 @@ $(document).ready(function() {
           .append($('<option>', { value : profile_name })
           .text(profile_name));
 	}
+	setup_salt_table();
 });
 </script>
 
@@ -213,68 +249,15 @@ $(document).ready(function() {
 <button onClick="optimize()">Find Salt Additions</button>
 
 
-<table>
+<table id='salt-table'>
 
 <tr>
 <th></th>
+<th>Enabled</th>
 <th>grams/gallon</th>
 <th id='g-gallons'>grams in X gallons</th>
 <th id='tsp-gallons'>tsp in X gallons</th>
 </tr>
-
-<tr>
-<th>Gypsum</th>
-<td id='g-gal-gypsum'></td>
-<td id='g-gypsum'></td>
-<td id='tsp-gypsum'></td>
-</tr>
-
-<tr>
-<th>Epsom</th>
-<td id='g-gal-epsom'></td>
-<td id='g-epsom'></td>
-<td id='tsp-epsom'></td>
-</tr>
-
-<tr>
-<th>Table Salt</th>
-<td id='g-gal-table'></td>
-<td id='g-table'></td>
-<td id='tsp-table'></td>
-</tr>
-
-<tr>
-<th>Calcium Chloride</th>
-<td id='g-gal-calcium_chloride'></td>
-<td id='g-calcium_chloride'></td>
-<td id='tsp-calcium_chloride'></td>
-</tr>
-
-<tr>
-<th>Magnesium Chloride</th>
-<td id='g-gal-magnesium_chloride'></td>
-<td id='g-magnesium_chloride'></td>
-<td id='tsp-magnesium_chloride'></td>
-</tr>
-
-<tr>
-<th>Baking Soda</th>
-<td id='g-gal-baking_soda'></td>
-<td id='g-baking_soda'></td>
-<td id='tsp-baking_soda'></td>
-</tr>
-
-<tr>
-<th>Pickling Lime</th>
-<td id='g-gal-pickling_lime'></td>
-<td id='g-pickling_lime'></td>
-<td id='tsp-pickling_lime'></td>
-</tr>
-
-<tr>
-
-</tr>
-
 </table>
 
 
